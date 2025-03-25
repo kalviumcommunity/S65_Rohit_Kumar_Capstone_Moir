@@ -84,4 +84,3 @@ pnpm run dev  # for backend
 ```
 ---
 ✨ Project by **Rohit Kumar**
-
