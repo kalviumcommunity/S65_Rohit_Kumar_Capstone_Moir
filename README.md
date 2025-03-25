@@ -1,4 +1,3 @@
-# S65_Rohit_Kumar_Capstone_Moir
 # MOIR
 
 ## 💡 Project Idea
