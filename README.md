@@ -82,10 +82,6 @@ pnpm install  # or npm install
 npm run dev  # for frontend
 pnpm run dev  # for backend
 ```
-
-## 🔮 Future Improvements
-- 🤖 AI-powered friend recommendations and conversation starters.
-
 ---
 ✨ Project by **Rohit Kumar**
 
