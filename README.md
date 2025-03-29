@@ -76,11 +76,11 @@ git clone https://github.com/kalviumcommunity/S65_Rohit_Kumar_Capstone_Moir.git
 cd S65_Rohit_Kumar_Capstone_Moir
 
 # Install dependencies
-pnpm install  # or npm install
+pnpm install  
 
 # Start the development servers
-npm run dev  # for frontend
-pnpm run dev  # for backend
+npm run dev  
+pnpm run dev 
 ```
 ---
 ✨ Project by **Rohit Kumar**
