@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRoutes from './routes/user.routes';
+import connectDB from './config/db';
 // No need for mongoose if you're not using it yet
 
 const app = express();
@@ -32,10 +33,15 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to connect to the database:', err);
+  });
 
 // Error handling middleware - note the parameter is renamed to _next since it's not used
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
