@@ -9,7 +9,7 @@ export interface AuthRequest extends Request {
 
 // Generate Access and Refresh Tokens
 const generateAccessAndRefreshTokens = async (
-  userId: string,
+  userId: string | unknown,
   req?: Request | AuthRequest
 ) => {
   try {
