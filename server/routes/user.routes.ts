@@ -34,4 +34,15 @@ router.get('/all', getAllUsers as RequestHandler);
 router.get('/dashboard', getDashboard as RequestHandler);
 router.get('/:id', getUserById as RequestHandler);
 
+
+//put requests
+router.put('/profile', 
+  debugUploadRequest as RequestHandler, 
+  uploadProfileImage as RequestHandler,
+  updateProfile as RequestHandler
+);
+router.put('/status', updateStatus as RequestHandler);
+
+
+
 export default router;
