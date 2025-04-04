@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useAuthStore } from '@/lib/store/authStore';
-import toast from 'react-hot-toast';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+// import { useState } from 'react';
+// import { useRouter } from 'next/navigation';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { useAuthStore } from '@/lib/store/authStore';
+// import toast from 'react-hot-toast';
+// import { FaEye, FaEyeSlash } from 'react-icons/fa';
+// import { IoClose } from 'react-icons/io5';
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { motion } from "framer-motion";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
