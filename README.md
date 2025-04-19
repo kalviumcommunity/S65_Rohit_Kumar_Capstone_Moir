@@ -1,3 +1,6 @@
+## Deployed Link
+https://s65-rohit-kumar-capstone-moir.vercel.app/
+
 # MOIR
 
 ## 💡 Project Idea
