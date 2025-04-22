@@ -210,3 +210,64 @@ export const getDashboard = async (req: AuthRequest, res: Response): Promise<Res
     return res.status(500).json({ message: "Error fetching dashboard data" });
   }
 };
+
+
+
+// Google OAuth Login
+export const googleAuth = passport.authenticate("google", {
+  scope: ["profile", "email"],
+});
+
+// Google OAuth Callback
+export const googleAuthCallback = (req: Request, res: Response) => {
+  passport.authenticate("google", async (err: Error, user: any) => {
+    if (err || !user) {
+      return res.redirect(process.env.CLIENT_URL + "/login?error=auth-failed");
+    }
+    try {
+      // Generate tokens for the authenticated Google user
+      const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
+        user._id,
+        req
+      );
+
+      // Set tokens as cookies with lax sameSite for redirects
+      res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+      });
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      });
+
+      // Redirect to the client on successful authentication
+      res.redirect(process.env.CLIENT_URL + "/chat");
+    } catch (error) {
+      res.redirect(process.env.CLIENT_URL + "/login?error=token-generation-failed");
+    }
+  })(req, res);
+};
+
+// Add this new function to your User controller
+
+export const getAuthToken = async (
+  req: AuthRequest,
+  res: Response
+): Promise<Response | void> => {
+  try {
+    // Generate a fresh token for the authenticated user
+    const accessToken = jwt.sign(
+      { _id: req.user._id },
+      process.env.ACCESS_TOKEN_SECRET as string,
+      { expiresIn: '1d' }
+    );
+    
+    return res.status(200).json({
+      success: true,
+      token: accessToken
+    });
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
